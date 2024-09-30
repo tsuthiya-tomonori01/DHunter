@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class TitleScript : MonoBehaviour
 {
+    //ê›íËUIÉtÉâÉO
+    bool SettingActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,16 @@ public class TitleScript : MonoBehaviour
     public void LoadScene()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void Setting()
+    {
+        SettingActive = true;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
 }
