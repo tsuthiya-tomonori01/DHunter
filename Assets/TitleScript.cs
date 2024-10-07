@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class TitleScript : MonoBehaviour
 {
     //İ’èUIƒtƒ‰ƒO
-    bool SettingActive = false;
+    //bool SettingActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class TitleScript : MonoBehaviour
 
     public void Setting()
     {
-        SettingActive = true;
+        //SettingActive = true;
     }
 
     public void Quit()
