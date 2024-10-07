@@ -16,9 +16,9 @@ public class CameraScript : MonoBehaviour
         float MouseX = Input.GetAxis("Mouse X");
         float MouseY = Input.GetAxis("Mouse Y");
 
-        if (Mathf.Abs(MouseX) > 0.0000001f)
+        if (Mathf.Abs(MouseX) > 0.000001f)
         {
-            MouseX = MouseX * 4;
+            MouseX = MouseX * 3;
 
             transform.RotateAround(Player.transform.position, Vector3.up, MouseX);
         }
@@ -36,7 +36,6 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-
         Vector3 playerCenter = Player.transform.position + Vector3.up * CameraHeight;
 
         Vector3 targetPosition = playerCenter - Player.transform.forward * CameraDistance;

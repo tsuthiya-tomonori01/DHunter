@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Windows;
 using Input = UnityEngine.Input;
 
 public class PlayetScript : MonoBehaviour
@@ -36,7 +32,7 @@ public class PlayetScript : MonoBehaviour
 
             transform.RotateAround(transform.position, Vector3.up, MouseX);
         }
-        
+
     }
 
     // Update is called once per frame
@@ -113,19 +109,19 @@ public class PlayetScript : MonoBehaviour
         if (other.gameObject.tag == "CombatTrigger_01")
         {
             Debug.Log("Hit");
-
+            Destroy(other.gameObject);
         }
 
         else if (other.gameObject.tag == "CombatTrigger_02")
         {
             Debug.Log("Hit");
-
+            Destroy(other.gameObject);
         }
 
         else if (other.gameObject.tag == "CombatTrigger_03")
         {
             Debug.Log("Hit");
-
+            Destroy(other.gameObject);
         }
     }
 }

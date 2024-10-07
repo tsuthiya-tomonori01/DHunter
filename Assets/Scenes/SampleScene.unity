@@ -789,7 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749d54bbcd2329746b64beacb044ea68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sword: {fileID: 100002, guid: 4f5854f24c1370b4d887ec9a18399327, type: 3}
+  Sword: {fileID: 0}
 --- !u!136 &589926694
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2240,7 +2240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1586529997}
-  CameraDistance: 3
+  CameraDistance: 4
   CameraHeight: 4
   CameraSpeed: 3
 --- !u!1 &1305469626
@@ -3422,6 +3422,10 @@ PrefabInstance:
     - target: {fileID: 4892249954168564, guid: e8759f37ba76b9340bd47646c47106ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.053
+      objectReference: {fileID: 0}
+    - target: {fileID: 23201662184793146, guid: e8759f37ba76b9340bd47646c47106ed, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 64187149486157828, guid: e8759f37ba76b9340bd47646c47106ed, type: 3}
       propertyPath: m_Convex

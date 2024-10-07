@@ -61,7 +61,19 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        EnemyWite();
 
+        Enemy_Attack_Frame01--;
+        Enemy_Attack_Frame02--;
+
+        if (Enemy_Attack_Frame01 <= 0)
+        {
+            EnemyAttack01();
+        }
+        if (Enemy_Attack_Frame02 <= 0)
+        {
+            EnemyAttack02();
+        }
     }
 
     void OnCollisionEnter(Collision other)
@@ -75,13 +87,14 @@ public class EnemyScript : MonoBehaviour
     //エネミー待機
     void EnemyWite()
     {
-        
+        //その場で動く
     }
 
     //エネミー移動
     void EnemyRun()
     {
-        
+        //プレイヤーの方向に進む処理
+
     }
     //エネミー攻撃０１
     void EnemyAttack01()
