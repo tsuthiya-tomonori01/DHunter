@@ -20,34 +20,7 @@ public class SensorScript : MonoBehaviour
 
     private void OnTriggerStay(Collider target)
     {
-        if (target.tag == "Player")
-        {
-            var playerDirection = target.transform.position - transform.position;
-
-            var angle = Vector3.Angle(transform.forward, playerDirection);
-
-            if (angle <= searchAngle)
-            {
-                if (!Physics.Linecast(transform.position + Vector3.up, target.transform.position + Vector3.up, obstacleLayer))
-                {
-                    if (Vector3.Distance(target.transform.position, transform.position) <= searchArea.radius * 0.5f
-                        && Vector3.Distance(target.transform.position, transform.position) >= searchArea.radius * 0.05f)
-                    {
-                        enemyMove.SetState(EnemyScript.EnemyState.Attack01);
-                    }
-                    else if (Vector3.Distance(target.transform.position, transform.position) <= searchArea.radius
-                        && Vector3.Distance(target.transform.position, transform.position) >= searchArea.radius * 0.5f
-                        && enemyMove.state == EnemyScript.EnemyState.Idle)
-                    {
-                        enemyMove.SetState(EnemyScript.EnemyState.Move, target.transform); // センサーに入ったプレイヤーをターゲットに設定して、追跡状態に移行する。
-                    }
-                }    
-            }
-            else if (angle > searchAngle)
-            {
-                enemyMove.SetState(EnemyScript.EnemyState.Idle);
-            }
-        }
+        
     }
 
     // Update is called once per frame

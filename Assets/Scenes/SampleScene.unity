@@ -191,7 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 14052771}
-  animator: {fileID: 0}
   EnemyHP: 120
   Enemy_Attack: 30
 --- !u!1 &143649427
@@ -577,7 +576,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 420741219}
-  animator: {fileID: 0}
   EnemyHP: 120
   Enemy_Attack: 30
 --- !u!1 &521866575
@@ -1749,7 +1747,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 992293562}
-  animator: {fileID: 0}
   EnemyHP: 120
   Enemy_Attack: 30
 --- !u!1 &1008819441
@@ -1875,7 +1872,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1244195698}
-  animator: {fileID: 0}
   EnemyHP: 120
   Enemy_Attack: 30
 --- !u!136 &1244195695
