@@ -29,7 +29,7 @@ public class PlayetScript : MonoBehaviour
 
     void playerMove(float MouseX)
     {
-        if (PlayerIsDead == false)
+        if (PlayerIsDead == true)
         {
             return;
         }
@@ -45,7 +45,7 @@ public class PlayetScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerIsDead == false)
+        if (PlayerIsDead == true)
         {
             return;
         }
@@ -105,7 +105,7 @@ public class PlayetScript : MonoBehaviour
 
     void PlayerAttack()
     {
-        if (PlayerIsDead == false)
+        if (PlayerIsDead == true)
         {
             return;
         }
