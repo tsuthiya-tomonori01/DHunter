@@ -15,29 +15,41 @@ public class PlayetScript : MonoBehaviour
 
     public bool JumpFlag = false;
 
-    //int PlayerHP = 240;
+    public bool PlayerIsDead = false;
+
+    int PlayerHP = 240;
 
     // Start is called before the first frame update
     void Start()
     {
         Quaternion.Euler(0, 0, 0);
         JumpFlag = false;
+        PlayerIsDead = false;
     }
 
     void playerMove(float MouseX)
     {
+        if (PlayerIsDead == false)
+        {
+            return;
+        }
+
         if (Mathf.Abs(MouseX) > 0.00001f)
         {
             MouseX = MouseX * 4;
 
             transform.RotateAround(transform.position, Vector3.up, MouseX);
         }
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (PlayerIsDead == false)
+        {
+            return;
+        }
+
         float MouseX = Input.GetAxis("Mouse X");
         playerMove(MouseX);
 
@@ -75,25 +87,29 @@ public class PlayetScript : MonoBehaviour
         }
 
         PlayerAttack();
-
+        PlayerDead();
     }
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            JumpFlag = true;
-
-            if (JumpFlag == true)
-            {
-                transform.position += transform.up * JumpSpeed * Time.deltaTime;
-                JumpFlag = false;
-            }
-        }
+        ////‰ñ”ð
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    animator.SetBool("Avoidance", true);
+        //}
+        //else
+        //{
+        //    animator.SetBool("Avoidance", false);
+        //}
     }
 
     void PlayerAttack()
     {
+        if (PlayerIsDead == false)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetBool("Mode_Attack", true);
@@ -101,6 +117,14 @@ public class PlayetScript : MonoBehaviour
         else
         {
             animator.SetBool("Mode_Attack", false);
+        }
+    }
+
+    void PlayerDead()
+    {
+        if (PlayerHP <= 0)
+        {
+            PlayerIsDead = true;
         }
     }
 

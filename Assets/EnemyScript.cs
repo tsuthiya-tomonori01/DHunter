@@ -33,13 +33,17 @@ public class EnemyScript : MonoBehaviour
     public Rigidbody rb;
     public Animator animator;
     public EnemyState state; //ƒLƒƒƒ‰‚Ìó‘Ô
-    private Transform targetTransform;
-    private Vector3 destination;
+    public Transform TargetTransform; //target‚ÌÀ•W
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    void LockOn()
+    {
+
     }
 
     // Update is called once per frame
