@@ -20,7 +20,7 @@ public class SensorScript : MonoBehaviour
 
     private void OnTriggerStay(Collider target)
     {
-        
+       
     }
 
     // Update is called once per frame

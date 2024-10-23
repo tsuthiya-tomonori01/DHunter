@@ -10,6 +10,7 @@ TagManager:
   - CombatTrigger_02
   - CombatTrigger_03
   - Sensor
+  - Axe
   layers:
   - Default
   - TransparentFX

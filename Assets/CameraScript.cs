@@ -29,7 +29,7 @@ public class CameraScript : MonoBehaviour
             {
                 MouseY = 0;
             }
-            CameraHeight -= MouseY / 12;
+            CameraHeight -= MouseY / 16;
         }
     }
 

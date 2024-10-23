@@ -1,22 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Playables;
+using static UnityEngine.Random;
 
 public class EnemyScript : MonoBehaviour
 {
-    public Rigidbody rb;
-
-    public Animator animeror;
-
     //エネミーの体力
     [SerializeField] int EnemyHP = 120;
 
     //エネミーの攻撃力
     [SerializeField] int Enemy_Attack = 30;
+
+    public int enemyDeathCount = 0;
 
     public enum EnemyState
     {
@@ -29,7 +30,11 @@ public class EnemyScript : MonoBehaviour
         Death     //死亡
     };
 
-    EnemyState enemyState = EnemyState.Idle;
+    public Rigidbody rb;
+    public Animator animator;
+    public EnemyState state; //キャラの状態
+    private Transform targetTransform;
+    private Vector3 destination;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +54,11 @@ public class EnemyScript : MonoBehaviour
         
     }
 
-   
+    //デスカウント
+    public void DeathCount()
+    {
+        enemyDeathCount += 1;
+    }
 
     //　敵キャラの状態を取得するためのメソッド
     void OnCollisionEnter(Collision other)
@@ -60,12 +69,13 @@ public class EnemyScript : MonoBehaviour
 
             if (EnemyHP <= 0)
             {
-                animeror.SetBool("Death", true);
+                animator.SetBool("Death", true);
                 Destroy(this.gameObject,3);
+                DeathCount();
             }
             else
             {
-                animeror.SetBool("Death", false);
+                animator.SetBool("Death", false);
             }
         }
     }
