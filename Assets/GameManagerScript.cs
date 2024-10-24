@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
+    public PlayetScript playerScript;
 
     // Start is called before the first frame update
     void Start()
@@ -15,17 +16,20 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-
-    }
-
-    public void LoadScene_GR()
-    {
-        SceneManager.LoadScene("CrearResultScene");
+        if (playerScript.GetPlayerIsDead() == true)
+        {
+            LoadScene_GO();
+        }
     }
 
     public void LoadScene_GO()
     {
         SceneManager.LoadScene("GameOverScene");
     }
+
+    public void LoadScene_GR()
+    {     
+        SceneManager.LoadScene("CrearResultScene");
+    }
+    
 }

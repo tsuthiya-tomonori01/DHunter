@@ -13,17 +13,14 @@ public class PlayetScript : MonoBehaviour
 
     float playerSpeed = 6.0f;
 
-    public bool JumpFlag = false;
+    private bool PlayerIsDead = false;
 
-    public bool PlayerIsDead = false;
-
-    int PlayerHP = 240;
+    private int PlayerHP = 240;
 
     // Start is called before the first frame update
     void Start()
     {
         Quaternion.Euler(0, 0, 0);
-        JumpFlag = false;
         PlayerIsDead = false;
     }
 
@@ -126,6 +123,11 @@ public class PlayetScript : MonoBehaviour
         {
             PlayerIsDead = true;
         }
+    }
+
+    public bool GetPlayerIsDead()
+    {
+        return PlayerIsDead;
     }
 
     void OnCollisionEnter(Collision other)

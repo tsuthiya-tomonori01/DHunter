@@ -196,6 +196,7 @@ MonoBehaviour:
   rb: {fileID: 14052771}
   animator: {fileID: 14052774}
   state: 0
+  TargetTransform: {fileID: 0}
 --- !u!95 &14052774 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95036879989758482, guid: ba2926d80e1466444936c24a1fa5aec7, type: 3}
@@ -589,6 +590,7 @@ MonoBehaviour:
   rb: {fileID: 420741219}
   animator: {fileID: 420741222}
   state: 0
+  TargetTransform: {fileID: 0}
 --- !u!95 &420741222 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95036879989758482, guid: ba2926d80e1466444936c24a1fa5aec7, type: 3}
@@ -1565,6 +1567,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &913042852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913042854}
+  - component: {fileID: 913042853}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &913042853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913042852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e0cb2faa5631742a8e03630d8fcfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScript: {fileID: 1586530009}
+--- !u!4 &913042854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913042852}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -65.57691, y: -157.86658, z: -67.12352}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &933484208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1849,6 +1896,7 @@ MonoBehaviour:
   rb: {fileID: 992293562}
   animator: {fileID: 0}
   state: 0
+  TargetTransform: {fileID: 0}
 --- !u!1 &1008819441
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,6 +2025,7 @@ MonoBehaviour:
   rb: {fileID: 1244195698}
   animator: {fileID: 1244195699}
   state: 0
+  TargetTransform: {fileID: 0}
 --- !u!136 &1244195695
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2776,7 +2825,6 @@ MonoBehaviour:
   rb: {fileID: 1586529999}
   Camera: {fileID: 1291063025}
   animator: {fileID: 1586530004}
-  JumpFlag: 0
 --- !u!4 &1626722106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
@@ -5577,3 +5625,4 @@ SceneRoots:
   - {fileID: 1836877559}
   - {fileID: 1274222617}
   - {fileID: 1937078511}
+  - {fileID: 913042854}
