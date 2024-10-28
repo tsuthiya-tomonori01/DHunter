@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    [SerializeField] GameObject Player;
+    public GameObject Player;
 
     public float CameraDistance;
     public float CameraHeight;
@@ -18,14 +18,14 @@ public class CameraScript : MonoBehaviour
 
         if (Mathf.Abs(MouseX) > 0.000001f)
         {
-            MouseX = MouseX * 3;
+            MouseX = MouseX * 2;
 
             transform.RotateAround(Player.transform.position, Vector3.up, MouseX);
         }
 
         if (Mathf.Abs(MouseY) > 0.0000001f)
         {
-            if ((CameraHeight - MouseY) < 1 || (CameraHeight - MouseY) > 6)
+            if ((CameraHeight - MouseY) < -2 || (CameraHeight - MouseY) > 6)
             {
                 MouseY = 0;
             }

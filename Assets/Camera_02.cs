@@ -11,6 +11,8 @@ public class Camera_02 : MonoBehaviour
 
     Vector3 diff;//移動距離
 
+    private float CameraHeight = 2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class Camera_02 : MonoBehaviour
 
         diff = currentPos - pastPos;
 
-        transform.position = Vector3.Lerp(transform.position, transform.position + diff, 1.0f);//カメラをプレイヤーの移動差分だけうごかすよ
+        transform.position = Vector3.Lerp(transform.position, transform.position + diff, 2.0f);//カメラをプレイヤーの移動差分だけうごかす
 
         pastPos = currentPos;
 
@@ -40,17 +42,23 @@ public class Camera_02 : MonoBehaviour
         float my = Input.GetAxis("Mouse Y");
 
         // X方向に一定量移動していれば横回転
-        if (Mathf.Abs(mx) > 0.01f)
+        if (Mathf.Abs(mx) > 0.00000001f)
         {
             // 回転軸はワールド座標のY軸
             transform.RotateAround(player.transform.position, Vector3.up, mx);
         }
 
         // Y方向に一定量移動していれば縦回転
-        if (Mathf.Abs(my) > 0.01f)
+        if (Mathf.Abs(my) > 0.00000001f)
         {
             // 回転軸はカメラ自身のX軸
             transform.RotateAround(player.transform.position, transform.right, -my);
+
+            if ((CameraHeight - my) < 0 || (CameraHeight - my) > 6)
+            {
+                my = 0;
+            }
+            CameraHeight -= my / 16;
         }
     }
 }

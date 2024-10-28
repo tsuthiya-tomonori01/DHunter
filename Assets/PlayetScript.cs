@@ -31,10 +31,8 @@ public class PlayetScript : MonoBehaviour
             return;
         }
 
-        if (Mathf.Abs(MouseX) > 0.00001f)
+        if (Mathf.Abs(MouseX) > 0.00000001f)
         {
-            MouseX = MouseX * 4;
-
             transform.RotateAround(transform.position, Vector3.up, MouseX);
         }
     }
@@ -60,6 +58,7 @@ public class PlayetScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.A))
         {
             transform.position -= transform.right * playerSpeed * Time.deltaTime;
+            Quaternion.Euler(0, -90, 0);
         }
 
         else if (Input.GetKey(KeyCode.S))
@@ -72,6 +71,7 @@ public class PlayetScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.D))
         {
             transform.position += transform.right * playerSpeed * Time.deltaTime;
+            Quaternion.Euler(0, 90, 0);
         }
 
         else

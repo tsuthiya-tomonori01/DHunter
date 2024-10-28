@@ -7,10 +7,7 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     //エネミーの体力
-    [SerializeField] int EnemyHP = 120;
-
-    //エネミーの攻撃力
-    [SerializeField] int Enemy_Attack = 30;
+    public int EnemyHP = 240;
 
     public int enemyDeathCount = 0;
 
