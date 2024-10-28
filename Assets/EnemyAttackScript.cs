@@ -16,6 +16,8 @@ public class EnemyAttackScript : MonoBehaviour
 
     EnemyScript enemyScript;
 
+    public Animator animator;
+
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -57,6 +59,8 @@ public class EnemyAttackScript : MonoBehaviour
     {
         timer = 0f;
 
+        animator.SetBool("Attack", true);
+        
         // Insert player health deduction logic here
         // Example: playerHealth.TakeDamage(attackDamage);
     }

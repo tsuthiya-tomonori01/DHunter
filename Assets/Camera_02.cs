@@ -42,7 +42,7 @@ public class Camera_02 : MonoBehaviour
         float my = Input.GetAxis("Mouse Y");
 
         // X•ûŒü‚Éˆê’è—ÊˆÚ“®‚µ‚Ä‚¢‚ê‚Î‰¡‰ñ“]
-        if (Mathf.Abs(mx) > 0.00000001f)
+        if (Mathf.Abs(mx) > 0.0000001f)
         {
             // ‰ñ“]²‚Íƒ[ƒ‹ƒhÀ•W‚ÌY²
             transform.RotateAround(player.transform.position, Vector3.up, mx);
