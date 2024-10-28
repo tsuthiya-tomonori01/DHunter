@@ -108,8 +108,8 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
+    agentSlope: 0
+    agentClimb: -0
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -466,7 +466,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1512290814}
@@ -647,7 +647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4558266444110246, guid: ba2926d80e1466444936c24a1fa5aec7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 88
+      value: 90.21
       objectReference: {fileID: 0}
     - target: {fileID: 4558266444110246, guid: ba2926d80e1466444936c24a1fa5aec7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -655,7 +655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4558266444110246, guid: ba2926d80e1466444936c24a1fa5aec7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11
+      value: -8.8
       objectReference: {fileID: 0}
     - target: {fileID: 4558266444110246, guid: ba2926d80e1466444936c24a1fa5aec7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -684,6 +684,10 @@ PrefabInstance:
     - target: {fileID: 4558266444110246, guid: ba2926d80e1466444936c24a1fa5aec7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611546225249606, guid: ba2926d80e1466444936c24a1fa5aec7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.8
       objectReference: {fileID: 0}
     - target: {fileID: 95036879989758482, guid: ba2926d80e1466444936c24a1fa5aec7, type: 3}
       propertyPath: m_Controller
@@ -1321,7 +1325,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &875992265
 BoxCollider:
@@ -1738,7 +1742,10 @@ MonoBehaviour:
   rb: {fileID: 992293562}
   animator: {fileID: 0}
   state: 0
-  TargetTransform: {fileID: 0}
+  target: {fileID: 0}
+  moveSpeed: 0
+  stopDistance: 0
+  moveDistance: 0
 --- !u!1 &1008819441
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,7 +1874,10 @@ MonoBehaviour:
   rb: {fileID: 1244195698}
   animator: {fileID: 1244195699}
   state: 0
-  TargetTransform: {fileID: 0}
+  target: {fileID: 1586530010}
+  moveSpeed: 2
+  stopDistance: 1.5
+  moveDistance: 15
 --- !u!136 &1244195695
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1940,7 +1950,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &1260925556
 BoxCollider:
@@ -2593,6 +2603,11 @@ MonoBehaviour:
   rb: {fileID: 1586529999}
   Camera: {fileID: 1291063025}
   animator: {fileID: 1586530004}
+--- !u!4 &1586530010 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400096, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
+  m_PrefabInstance: {fileID: 1850480017}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1626722106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
