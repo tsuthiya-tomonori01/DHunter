@@ -6,7 +6,7 @@ public class SwordScript : MonoBehaviour
 {
     //public GameObject SwordParticle;
 
-    public GameObject Sword;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +17,15 @@ public class SwordScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        //if (Input.GetMouseButtonDown(0))
+        //{
+            
+        //}
+        //else
+        //{
+            
+        //}
     }
-
 
     void OnCollisionEnter(Collision other)
     {

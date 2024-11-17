@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -33,20 +32,22 @@ public class EnemyScript : MonoBehaviour
     // オブジェクトがターゲットに向かって移動を開始する距離を格納する変数
     public float moveDistance;
 
+    bool EnemyDeath = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    void LockOn()
-    {
-
+        EnemyHP = 240;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (EnemyDeath == true)
+        {
+            return;
+        }
+
         // 変数 targetPos を作成してターゲットオブジェクトの座標を格納
         Vector3 targetPos = target.position;
         // 自分自身のY座標を変数 target のY座標に格納
@@ -72,12 +73,6 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    //　敵キャラの状態を設定するためのメソッド 
-    public void SetState(EnemyState enemyState, Transform targetObject = null)
-    {
-        
-    }
-
     //デスカウント
     public void DeathCount()
     {
@@ -95,6 +90,7 @@ public class EnemyScript : MonoBehaviour
             {
                 animator.SetBool("Death", true);
                 Destroy(this.gameObject,3);
+                EnemyDeath = true;
                 DeathCount();
             }
             else

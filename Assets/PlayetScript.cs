@@ -9,8 +9,6 @@ public class PlayetScript : MonoBehaviour
 
     public Animator animator;
 
-    float JumpSpeed = 80.0f;
-
     float playerSpeed = 6.0f;
 
     private bool PlayerIsDead = false;

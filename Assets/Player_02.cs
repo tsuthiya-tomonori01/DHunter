@@ -88,9 +88,6 @@ public class Player_02 : MonoBehaviour
             Quaternion.Euler(0, 0, 0);
         }
 
-        //Attack呼び出し
-        PlayerAttack();
-
         //Moveメソッドで、力加えてもらう
         Move();
 
@@ -137,18 +134,6 @@ public class Player_02 : MonoBehaviour
         //playerRb.AddForce(moveSpeed, ForceMode.Force);
 
         playerRb.velocity = moveSpeed;
-    }
-
-    void PlayerAttack()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            animator.SetBool("Mode_Attack", true);
-        }
-        else
-        {
-            animator.SetBool("Mode_Attack", false);
-        }
     }
 
     void OnCollisionEnter(Collision other)

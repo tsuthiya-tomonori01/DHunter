@@ -22,6 +22,11 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
+    void CombatManager()
+    {
+
+    }
+
     public void LoadScene_GO()
     {
         SceneManager.LoadScene("GameOverScene");
@@ -31,5 +36,4 @@ public class GameManagerScript : MonoBehaviour
     {     
         SceneManager.LoadScene("CrearResultScene");
     }
-    
 }

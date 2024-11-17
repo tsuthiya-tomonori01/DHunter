@@ -4,19 +4,11 @@ using UnityEngine;
 
 public class EnemyAttackScript : MonoBehaviour
 {
-    public float timeBetweenAttacks = 0.5f;
-    public int attackDamage = 10;
+    public Animator animator;
 
     private GameObject player;
-    private bool playerInRange;
-    private float timer;
-    private float timer2;
-
-    private bool DeathAttack = false;
 
     EnemyScript enemyScript;
-
-    public Animator animator;
 
     void Awake()
     {
@@ -26,54 +18,24 @@ public class EnemyAttackScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= timeBetweenAttacks && playerInRange)
-        {
-            Attack();
-        }
-
-        if (enemyScript.EnemyHP <= 120 && timer >= timeBetweenAttacks && playerInRange)
-        {
-            InstantDeath();
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == player)
-        {
-            playerInRange = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == player)
-        {
-            playerInRange = false;
-        }
-    }
-
-    void Attack()
-    {
-        timer = 0f;
-
-        animator.SetBool("Attack", true);
         
-        // Insert player health deduction logic here
-        // Example: playerHealth.TakeDamage(attackDamage);
     }
 
-    void InstantDeath()
+    private void OnTriggerEnter(Collider other)
     {
-        timer2 = 0f;
-
-
+        if (player)
+        {
+            //プレイヤーがセンサー内にいたら攻撃する
+            animator.SetBool("Attack", true);
+        }      
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        
+        //プレイヤーがセンサー外にいたら攻撃せず、追跡する
+        if (player)
+        {
+            animator.SetBool("Attack", false);
+        }
     }
 }
