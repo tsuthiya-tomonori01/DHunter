@@ -63,8 +63,6 @@ public class PlayetScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.S))
         {
             transform.position -= transform.forward * playerSpeed * Time.deltaTime;
-
-            animator.SetBool("Mode_B", true);
         }
 
         else if (Input.GetKey(KeyCode.D))
@@ -76,8 +74,6 @@ public class PlayetScript : MonoBehaviour
         else
         {
             animator.SetBool("Mode", false);
-
-            animator.SetBool("Mode_B", false);
 
             Quaternion.Euler(0, 0, 0);
         }
