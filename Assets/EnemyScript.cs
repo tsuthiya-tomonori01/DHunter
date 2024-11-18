@@ -65,11 +65,13 @@ public class EnemyScript : MonoBehaviour
         {
             // 変数 moveSpeed を乗算した速度でオブジェクトを前方向に移動する
             transform.position = transform.position + transform.forward * moveSpeed * Time.deltaTime;
-            animator.SetBool("chase", true);
+            animator.SetBool("Walk", true);
+            animator.SetBool("Wite", false);
         }
         else
         {
-            animator.SetBool("chase", false);
+            animator.SetBool("Wite", true);
+            animator.SetBool("Walk", false);
         }
     }
 
