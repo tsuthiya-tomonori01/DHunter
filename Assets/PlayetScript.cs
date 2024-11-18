@@ -19,6 +19,7 @@ public class PlayetScript : MonoBehaviour
     void Start()
     {
         Quaternion.Euler(0, 0, 0);
+        PlayerHP = 240;
         PlayerIsDead = false;
     }
 
