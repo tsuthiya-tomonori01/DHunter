@@ -1,18 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    //エネミーの体力
-    public int EnemyHP = 240;
-
-    public int enemyDeathCount = 0;
 
     public enum EnemyState
     {
-        Idle, //待機
         Wite, //一時停止
         Move, //追跡 
         Attack01, //攻撃１
@@ -21,58 +17,135 @@ public class EnemyScript : MonoBehaviour
         Death     //死亡
     };
 
-    public Rigidbody rb;
-    public Animator animator;
-    public EnemyState state; //キャラの状態
-    public Transform target;
-    // オブジェクトの移動速度を格納する変数
-    public float moveSpeed;
-    // オブジェクトが停止するターゲットオブジェクトとの距離を格納する変数
-    public float stopDistance;
-    // オブジェクトがターゲットに向かって移動を開始する距離を格納する変数
-    public float moveDistance;
+    public Transform targetTransform;
 
+    public Rigidbody rb;
+
+    public Animator animator;
+
+    public Transform target;
+
+    public EnemyState state;
+    
     bool EnemyDeath = false;
+
+    //エネミーの体力
+    public int EnemyHP = 240;
+
+    public float enemyMoveSpeed;
+
+    public float EnemyAngulSpeed;
+
+    public int enemyDeathCount = 0;
+
+    private float FreezeTime = 2;
+
+    private Vector3 destination;
 
     // Start is called before the first frame update
     void Start()
     {
         EnemyHP = 240;
+        enemyDeathCount = 0;
+        SetState(EnemyState.Wite);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (EnemyDeath == true)
+        if (state == EnemyState.Move)
         {
-            return;
+            if (targetTransform == null)
+            {
+                SetState(EnemyState.Wite);
+            }
+            else
+            {
+                //ターゲットの座標を入れる
+                SetDistination(targetTransform.position);
+                
+                //敵の向きをプレイヤーの方向に変えていく
+                var dir = (GetDisnation() - transform.position).normalized;
+
+                //上に向かないようにする
+                dir.y = 0;
+
+                //エネミーの角度をプレイヤーの方向に近づける
+                Quaternion setRotation = Quaternion.LookRotation(dir);
+
+                //エネミーの角度を決めた角度に代入する
+                transform.rotation = Quaternion.Slerp(transform.rotation, setRotation, EnemyAngulSpeed * Time.deltaTime);
+
+                //エネミーをプレイヤーの方向に進ませる
+                transform.position = transform.position + transform.forward * enemyMoveSpeed * Time.deltaTime;
+
+                animator.SetBool("Walk", true);
+            }
+
+            if (state == EnemyState.Move)
+            {
+                //エネミーとプレイヤーの距離が１以内だったら、Walkをやめさせる
+                if (Vector3.Distance(transform.position, targetTransform.position) < 1.0f)
+                {
+                    animator.SetBool("Walk", false);
+                    SetState(EnemyState.Attack01);
+                }
+            }
         }
 
-        // 変数 targetPos を作成してターゲットオブジェクトの座標を格納
-        Vector3 targetPos = target.position;
-        // 自分自身のY座標を変数 target のY座標に格納
-        //（ターゲットオブジェクトのX、Z座標のみ参照）
-        targetPos.y = transform.position.y;
-        // オブジェクトを変数 targetPos の座標方向に向かせる
-        transform.LookAt(targetPos);
+        //else if (state == EnemyState.Freeze)
+        //{
+        //    elapsedTime += Time.deltaTime;
 
-        // 変数 distance を作成してオブジェクトの位置とターゲットオブジェクトの距離を格納
-        float distance = Vector3.Distance(transform.position, target.position);
-        // オブジェクトとターゲットオブジェクトの距離判定
-        // 変数 distance（ターゲットオブジェクトとオブジェクトの距離）が変数 moveDistance の値より小さければ
-        // さらに変数 distance が変数 stopDistance の値よりも大きい場合
-        if (distance < moveDistance && distance > stopDistance)
+        //    if (elapsedTime > FreezeTime)
+        //    {
+        //        SetState(EnemyState.Wite);
+        //    }
+        //}
+    }
+
+    public void SetState(EnemyState EState, Transform targetObject = null)
+    {
+        state = EState;
+
+        if (EState == EnemyState.Wite)
         {
-            // 変数 moveSpeed を乗算した速度でオブジェクトを前方向に移動する
-            transform.position = transform.position + transform.forward * moveSpeed * Time.deltaTime;
-            animator.SetBool("Walk", true);
-            animator.SetBool("Wite", false);
+            state = EState;
         }
-        else
+        else if (EState == EnemyState.Move)
         {
-            animator.SetBool("Wite", true);
-            animator.SetBool("Walk", false);
+            targetTransform = targetObject;
+            state = EState;
         }
+        else if (EState == EnemyState.Attack01)
+        {
+            state = EState;
+            animator.SetBool("Attack", true);
+        }
+        else if (EState == EnemyState.Freeze)
+        {
+            state = EState;
+            animator.SetBool("Attack", false);
+        }
+        else if (EState == EnemyState.Death)
+        {
+            state = EState;
+        }
+    }
+    //　敵キャラクターの状態取得メソッド
+    public EnemyState GetState()
+    {
+        return state;
+    }
+
+    public void SetDistination(Vector3 position)
+    {
+        destination = position;
+    }
+
+    public Vector3 GetDisnation()
+    {
+        return destination;
     }
 
     //デスカウント
@@ -88,7 +161,7 @@ public class EnemyScript : MonoBehaviour
         {
             EnemyHP -= 20;
 
-            if (EnemyHP <= 0)
+            if (EnemyHP <= 0 && state == EnemyState.Death)
             {
                 animator.SetBool("Death", true);
                 Destroy(this.gameObject,3);
