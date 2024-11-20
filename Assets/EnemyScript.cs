@@ -109,7 +109,7 @@ public class EnemyScript : MonoBehaviour
 
             if (elapsedTime > FreezeTime)
             {
-                SetState(EnemyState.Move);
+                SetState(EnemyState.Wite);
             }
         }
     }
