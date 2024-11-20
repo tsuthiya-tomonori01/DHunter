@@ -38,7 +38,9 @@ public class EnemyScript : MonoBehaviour
 
     public int enemyDeathCount = 0;
 
-    private float FreezeTime = 2;
+    private float FreezeTime = 6.0f;
+
+    private float elapsedTime;
 
     private Vector3 destination;
 
@@ -53,6 +55,11 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (EnemyDeath == true)
+        {
+            return;
+        }
+
         if (state == EnemyState.Move)
         {
             if (targetTransform == null)
@@ -76,16 +83,19 @@ public class EnemyScript : MonoBehaviour
                 //エネミーの角度を決めた角度に代入する
                 transform.rotation = Quaternion.Slerp(transform.rotation, setRotation, EnemyAngulSpeed * Time.deltaTime);
 
-                //エネミーをプレイヤーの方向に進ませる
-                transform.position = transform.position + transform.forward * enemyMoveSpeed * Time.deltaTime;
+                if (Vector3.Distance(transform.position, targetTransform.position) > 1.4f)
+                {
+                    //エネミーをプレイヤーの方向に進ませる
+                    transform.position = transform.position + transform.forward * enemyMoveSpeed * Time.deltaTime;
 
-                animator.SetBool("Walk", true);
+                    animator.SetBool("Walk", true);
+                }
             }
 
             if (state == EnemyState.Move)
             {
                 //エネミーとプレイヤーの距離が１以内だったら、Walkをやめさせる
-                if (Vector3.Distance(transform.position, targetTransform.position) < 1.0f)
+                if (Vector3.Distance(transform.position, targetTransform.position) < 1.4f)
                 {
                     animator.SetBool("Walk", false);
                     SetState(EnemyState.Attack01);
@@ -93,15 +103,15 @@ public class EnemyScript : MonoBehaviour
             }
         }
 
-        //else if (state == EnemyState.Freeze)
-        //{
-        //    elapsedTime += Time.deltaTime;
+        if (state == EnemyState.Freeze)
+        {
+            elapsedTime += Time.deltaTime;
 
-        //    if (elapsedTime > FreezeTime)
-        //    {
-        //        SetState(EnemyState.Wite);
-        //    }
-        //}
+            if (elapsedTime > FreezeTime)
+            {
+                SetState(EnemyState.Move);
+            }
+        }
     }
 
     public void SetState(EnemyState EState, Transform targetObject = null)
@@ -111,6 +121,7 @@ public class EnemyScript : MonoBehaviour
         if (EState == EnemyState.Wite)
         {
             state = EState;
+            animator.SetBool("Walk", false);
         }
         else if (EState == EnemyState.Move)
         {
@@ -161,10 +172,10 @@ public class EnemyScript : MonoBehaviour
         {
             EnemyHP -= 20;
 
-            if (EnemyHP <= 0 && state == EnemyState.Death)
+            if (EnemyHP < 0)
             {
                 animator.SetBool("Death", true);
-                Destroy(this.gameObject,3);
+                Destroy(this.gameObject,5);
                 EnemyDeath = true;
                 DeathCount();
             }

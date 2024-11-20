@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class EnemySensor : MonoBehaviour
 {
-
     [SerializeField]
     private EnemyScript enemyScript;
     [SerializeField]
     private SphereCollider searchArea;
     [SerializeField]
-    private float searchAngle = 130f;
+    private float searchAngle = 130.0f;
 
     void Start()
     {
