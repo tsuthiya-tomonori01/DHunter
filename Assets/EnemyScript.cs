@@ -175,7 +175,7 @@ public class EnemyScript : MonoBehaviour
             if (EnemyHP < 0)
             {
                 animator.SetBool("Death", true);
-                Destroy(this.gameObject,5);
+                Destroy(this.gameObject,4);
                 EnemyDeath = true;
                 DeathCount();
             }
