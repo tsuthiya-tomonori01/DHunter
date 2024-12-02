@@ -13,7 +13,7 @@ public class PlayetScript : MonoBehaviour
 
     private bool PlayerIsDead = false;
 
-    private int PlayerHP = 240;
+    public int PlayerHP = 240;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +63,7 @@ public class PlayetScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.S))
         {
             transform.position -= transform.forward * playerSpeed * Time.deltaTime;
+            animator.SetBool("Mode_B", true);
         }
 
         else if (Input.GetKey(KeyCode.D))
@@ -74,7 +75,7 @@ public class PlayetScript : MonoBehaviour
         else
         {
             animator.SetBool("Mode", false);
-
+            animator.SetBool("Mode_B", false);
             Quaternion.Euler(0, 0, 0);
         }
 
@@ -127,22 +128,9 @@ public class PlayetScript : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "CombatTrigger_01")
+        if (other.gameObject.tag == "Axe")
         {
-            Debug.Log("Hit");
-            Destroy(other.gameObject);
-        }
-
-        else if (other.gameObject.tag == "CombatTrigger_02")
-        {
-            Debug.Log("Hit");
-            Destroy(other.gameObject);
-        }
-
-        else if (other.gameObject.tag == "CombatTrigger_03")
-        {
-            Debug.Log("Hit");
-            Destroy(other.gameObject);
+            PlayerHP -= 20;
         }
     }
 }

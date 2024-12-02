@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class EnemyScript : MonoBehaviour
     bool EnemyDeath = false;
 
     //エネミーの体力
-    public int EnemyHP = 240;
+    public int EnemyHP = 1200;
 
     public float enemyMoveSpeed;
 
@@ -38,7 +39,7 @@ public class EnemyScript : MonoBehaviour
 
     public int enemyDeathCount = 0;
 
-    private float FreezeTime = 6.0f;
+    private float FreezeTime = 5.0f;
 
     private float elapsedTime;
 
@@ -47,7 +48,7 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EnemyHP = 240;
+        EnemyHP = 1200;
         enemyDeathCount = 0;
         SetState(EnemyState.Wite);
     }
@@ -83,7 +84,7 @@ public class EnemyScript : MonoBehaviour
                 //エネミーの角度を決めた角度に代入する
                 transform.rotation = Quaternion.Slerp(transform.rotation, setRotation, EnemyAngulSpeed * Time.deltaTime);
 
-                if (Vector3.Distance(transform.position, targetTransform.position) > 1.4f)
+                if (Vector3.Distance(transform.position, targetTransform.position) > 1.3f)
                 {
                     //エネミーをプレイヤーの方向に進ませる
                     transform.position = transform.position + transform.forward * enemyMoveSpeed * Time.deltaTime;
@@ -95,11 +96,21 @@ public class EnemyScript : MonoBehaviour
             if (state == EnemyState.Move)
             {
                 //エネミーとプレイヤーの距離が１以内だったら、Walkをやめさせる
-                if (Vector3.Distance(transform.position, targetTransform.position) < 1.4f)
+                if (Vector3.Distance(transform.position, targetTransform.position) < 1.3f)
                 {
                     animator.SetBool("Walk", false);
                     SetState(EnemyState.Attack01);
                 }
+            }
+        }
+
+        if (state == EnemyState.Attack01)
+        {
+            //もし、攻撃中にプレイヤーが攻撃範囲外に行ったら、攻撃をやめる
+            if (Vector3.Distance(transform.position, targetTransform.position) > 1.4f)
+            {
+                animator.SetBool("Attack", false);
+                SetState(EnemyState.Move);
             }
         }
 
@@ -109,7 +120,7 @@ public class EnemyScript : MonoBehaviour
 
             if (elapsedTime > FreezeTime)
             {
-                SetState(EnemyState.Wite);
+                SetState(EnemyState.Attack01);
             }
         }
     }
@@ -175,7 +186,7 @@ public class EnemyScript : MonoBehaviour
             if (EnemyHP < 0)
             {
                 animator.SetBool("Death", true);
-                Destroy(this.gameObject,4);
+                Destroy(this.gameObject,2);
                 EnemyDeath = true;
                 DeathCount();
             }
