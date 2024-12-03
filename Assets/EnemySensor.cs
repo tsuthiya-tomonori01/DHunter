@@ -37,7 +37,14 @@ public class EnemySensor : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            enemyScript.SetState(EnemyScript.EnemyState.Wite);
+            //　主人公の方向
+            var playerDirection = other.transform.position - transform.position;
+            //　敵の前方からの主人公の方向
+            var angle = Vector3.Angle(transform.forward, playerDirection);
+            if (angle >= searchAngle)
+            {
+                enemyScript.SetState(EnemyScript.EnemyState.Wite);
+            }
         }
     }
 
