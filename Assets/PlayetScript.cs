@@ -84,6 +84,11 @@ public class PlayetScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+        }
+
+
         ////‰ñ”ð
         //if (Input.GetKeyDown(KeyCode.E))
         //{
