@@ -107,7 +107,7 @@ public class EnemyScript : MonoBehaviour
         if (state == EnemyState.Attack01)
         {
             //もし、攻撃中にプレイヤーが攻撃範囲外に行ったら、攻撃をやめる
-            if (Vector3.Distance(transform.position, targetTransform.position) > 1.4f)
+            if (Vector3.Distance(transform.position, targetTransform.position) > 1.3f)
             {
                 animator.SetBool("Attack", false);
                 SetState(EnemyState.Move);
@@ -120,7 +120,7 @@ public class EnemyScript : MonoBehaviour
 
             if (elapsedTime > FreezeTime)
             {
-                SetState(EnemyState.Attack01);
+                SetState(EnemyState.Wite);
             }
         }
     }
