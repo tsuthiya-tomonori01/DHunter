@@ -89,7 +89,6 @@ public class PlayetScript : MonoBehaviour
         {
         }
 
-
         ////‰ñ”ð
         //if (Input.GetKeyDown(KeyCode.E))
         //{

@@ -14,7 +14,7 @@ public class EnemySensor : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     private void OnTriggerStay(Collider other)

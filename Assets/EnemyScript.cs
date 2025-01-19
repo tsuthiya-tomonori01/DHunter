@@ -27,11 +27,11 @@ public class EnemyScript : MonoBehaviour
     public Transform target;
 
     public EnemyState state;
-    
+
     bool EnemyDeath = false;
 
     //エネミーの体力
-    public int EnemyHP = 1200;
+    public int EnemyHP = 300;
 
     public float enemyMoveSpeed;
 
@@ -71,7 +71,7 @@ public class EnemyScript : MonoBehaviour
             {
                 //ターゲットの座標を入れる
                 SetDistination(targetTransform.position);
-                
+
                 //敵の向きをプレイヤーの方向に変えていく
                 var dir = (GetDisnation() - transform.position).normalized;
 
@@ -132,12 +132,14 @@ public class EnemyScript : MonoBehaviour
         if (EState == EnemyState.Wite)
         {
             state = EState;
+            animator.SetBool("Wite", true);
             animator.SetBool("Walk", false);
         }
         else if (EState == EnemyState.Move)
         {
             targetTransform = targetObject;
             state = EState;
+            animator.SetBool("Wite", false);
         }
         else if (EState == EnemyState.Attack01)
         {
@@ -186,7 +188,7 @@ public class EnemyScript : MonoBehaviour
             if (EnemyHP < 0)
             {
                 animator.SetBool("Death", true);
-                Destroy(this.gameObject,2);
+                Destroy(this.gameObject, 2);
                 EnemyDeath = true;
                 DeathCount();
             }
